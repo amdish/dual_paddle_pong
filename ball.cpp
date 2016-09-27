@@ -16,6 +16,9 @@
 const int Ball::BALL_VEL = 1;
 const int Ball::SPIN_ADJ = 2;
 
+/*********************Default constructor**********
+ Sets ball to inital state
+ **************************************************/
 Ball::Ball()
 {
     vx = -BALL_VEL*2;
@@ -23,7 +26,11 @@ Ball::Ball()
     x = Pong::SCREEN_WIDTH/2;
     y = Pong::SCREEN_HEIGHT/2;
 }
+Ball::~Ball(){}
 
+/**************************************************
+ Loads ball surface and returns texture
+ **************************************************/
 SDL_Texture* Ball::loadBall(SDL_Renderer* gameRenderer)
 {
     SDL_Surface* tempSurface;
@@ -40,11 +47,12 @@ SDL_Texture* Ball::loadBall(SDL_Renderer* gameRenderer)
     return theBall;
 }
 
-Ball::~Ball()
-{
-   
-}
 
+/**************************************************
+ Provides new coordinates to ball. 
+ Returns values from checkEdge function which is passed
+ back tp pong.cpp to determine if someone has scored
+ **************************************************/
 int Ball::move()
 {
     x+=vx;
@@ -52,6 +60,9 @@ int Ball::move()
     return(checkEdge());
 }
 
+/**************************************************
+Resets ball location after someone has scored
+ **************************************************/
 void Ball::reset()
 {
     x = Pong::SCREEN_WIDTH/2;
@@ -60,6 +71,9 @@ void Ball::reset()
     vy = BALL_VEL;
 }
 
+/*********************************************************
+Changes ball direction if collision with boundry is detected
+**********************************************************/
 int Ball::checkEdge()
 {
      if (x >= (Pong::SCREEN_WIDTH - width) || y <= 0)
@@ -77,13 +91,14 @@ int Ball::checkEdge()
     return 0;
 }
 
+//*******************Horizontal bounce
 void Ball::xBounce()
 {
     vx = -vx;
     //x+=vx;
-    
 }
 
+//*******************Vertical bounce
 void Ball::yBounce()
 {
     vy = -vy;

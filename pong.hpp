@@ -6,6 +6,7 @@
 //  Copyright © 2016 AMOL SHAH. All rights reserved.
 //Google favors this order: "Typedefs and Enums, Constants, Constructors, Destructor, Methods, including static methods, Data Members, including static data members."
 
+
 #ifndef pong_hpp
 #define pong_hpp
 
@@ -21,37 +22,42 @@
 class Pong
 {
 public:
+    
+    Pong();
+    ~Pong();
+    
+//Game renderer
     SDL_Renderer* gameRenderer;
 
     int playerOneScore = 0;
     int playerTwoScore = 0;
-
     std::string playerOneText = "Player 1";
     std::string playerTwoText = "Player 2";
 
+//Games objects
     Paddle* left;
     Paddle* right;
     Paddle* top;
     Paddle* bottom;
+    Ball* ballOne;
     gameScene* sceneOne;
     
-    Ball* ballOne;
-    
-    Pong();
-    ~Pong();
-
     void execute();
 
+//Window attributes
     static const int SCREEN_WIDTH;
     static const int SCREEN_HEIGHT;
     static const int WINDOW_HEIGHT;
     
 private:
+
+//Window and textures
     SDL_Window* gameWindow;
     SDL_Texture* ballTexture;
     SDL_Texture* pOneScoreTexture;
     SDL_Texture* pTwoScoreTexture;
-    
+
+//Game and scene control
     bool input();
     void update();
     void render();
@@ -64,8 +70,5 @@ private:
     void renderStats();
     void createStatsTexture();
     void clearRenderer();
-    
-    
-    
 };
 #endif /* pong_hpp */

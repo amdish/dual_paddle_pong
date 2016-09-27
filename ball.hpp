@@ -9,7 +9,6 @@
 #ifndef ball_hpp
 #define ball_hpp
 
-#include <stdio.h>
 #include <SDL2/SDL.h>
 
 class Ball
@@ -19,16 +18,19 @@ class Ball
         Ball();
         ~Ball();
     
+    //Control ball movement and locations
         int move();
         int checkEdge();
         void xBounce();
         void yBounce();
         void reset();
+    
+    //Loads ball image to surface and converts to texture
         SDL_Texture* loadBall(SDL_Renderer*);
     
+    //Ball attributes
         int x, y, width, height;
         int vx, vy;
-    
         static const int BALL_VEL;
         static const int SPIN_ADJ;
 };

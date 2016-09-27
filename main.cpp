@@ -12,8 +12,9 @@
 
 using namespace std;
 
-int main()
+int main(/*int argc, char *argv[]*/)
 {
+    //Create and execute game object
     Pong game_1;
     game_1.execute();
     

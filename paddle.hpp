@@ -16,13 +16,14 @@ class Paddle
         Paddle(int, int);
         ~Paddle();
     
+    //Paddle Control
         void move();
         void AI_move(int, int, int, int, int);
-    
         int distToBall(int, int);
+
+    //Paddle attributes
         int x, y;
         int vx, vy;
-    
         static const int WIDTH;
         static const int HEIGHT;
         static const int PADDLE_VEL;

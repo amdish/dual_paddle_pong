@@ -6,8 +6,8 @@
 //  Copyright © 2016 AMOL SHAH. All rights reserved.
 //
 
-#include "paddle.hpp"
 #include "pong.hpp"
+#include "paddle.hpp"
 #include "ball.hpp"
 
 const int Paddle::HEIGHT = 90;
@@ -15,6 +15,9 @@ const int Paddle::WIDTH = 10;
 const int Paddle::OFFSET = 15;
 const int Paddle::PADDLE_VEL = 5;
 
+/*********************Default constructor**********
+Sets paddle to inital state
+ **************************************************/
 Paddle::Paddle(int x, int y)
 {
     vy = 0;
@@ -22,21 +25,35 @@ Paddle::Paddle(int x, int y)
     this->x = x;
     this->y = y;
 }
-
 Paddle::~Paddle(){}
 
+/*************************************************
+Returns the distance from the paddle to the ball
+which are passed in as arguments
+ *************************************************/
 int Paddle::distToBall(int ballPos, int paddlePos)
 {
     int distance = ballPos - (paddlePos+HEIGHT/2);
     return distance;
 }
 
+/*************************************************
+ Moves paddles controlled by computer
+ Currently the code varies from paddle to paddle,
+ this was done to test different methods of paddle AI.
+ In addition, for debugging purposes it was easier to 
+ have all the paddle controlled tbe the computer.
+ The code commented out is that of paddles controled by
+ the player.
+ *************************************************/
 void Paddle::AI_move(int yBall, int xBall, int ballVx, int ballVy, int which)
 {
     //0=right
     //1=top
     //2=left
     //3=bottom
+    
+    /************************Controls RIGHT paddle******************/
     if (which == 0)
     {
         //Returns paddle to center
@@ -57,6 +74,7 @@ void Paddle::AI_move(int yBall, int xBall, int ballVx, int ballVy, int which)
                 vy = PADDLE_VEL;
         }
     }
+    /************************Controls TOP paddle******************/
     else if (which == 1)
     {
         if (ballVy < 0)
@@ -77,6 +95,7 @@ void Paddle::AI_move(int yBall, int xBall, int ballVx, int ballVy, int which)
                 vx = -PADDLE_VEL;
         }
     }
+    /************************Controls LEFT paddle******************/
     else if (which == 2)
     {
         //Returns paddle to center
@@ -98,6 +117,7 @@ void Paddle::AI_move(int yBall, int xBall, int ballVx, int ballVy, int which)
                 vy = PADDLE_VEL;
         }
     }
+    /************************Controls BOTTOM paddle******************/
     else if (which == 3)
     {
         if (ballVy > 0)
@@ -120,6 +140,9 @@ void Paddle::AI_move(int yBall, int xBall, int ballVx, int ballVy, int which)
     }
 }
 
+/************************************************************
+Moves paddle controlled by user
+************************************************************/
 void Paddle::move()
 {
     y+=vy;

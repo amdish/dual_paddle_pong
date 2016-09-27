@@ -8,17 +8,21 @@
 
 #include "gameScene.hpp"
 
+using std::string;
 
-using namespace std;
-
+/*********************Default constructor**********
+ Loads up fonts to use in render
+ **************************************************/
 gameScene::gameScene()
 {
     gFont = TTF_OpenFont( "Tinos-Bold.ttf", 28 );
     gFont2 = TTF_OpenFont( "Tinos-Bold.ttf", 36 );
 }
-
 gameScene::~gameScene(){}
 
+/**************************************************
+ Loads game scene
+ **************************************************/
 SDL_Texture* gameScene::getTexture(SDL_Renderer* gameRenderer, string toPrint, bool which){
 
    // string toPrint = to_string(score);
